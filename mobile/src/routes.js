@@ -1,12 +1,11 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import Login from "./pages/Login";
 import Book from "./pages/Book";
 import List from "./pages/List";
 
 const Routes = createAppContainer(
-  createStackNavigator({
+  createSwitchNavigator({
     Login,
     Book,
     List,
