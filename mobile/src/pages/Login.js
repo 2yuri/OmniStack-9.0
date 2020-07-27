@@ -17,7 +17,7 @@ import logo from "../assets/logo.png";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
-  const [tech, setTech] = useState("");
+  const [techs, setTechs] = useState("");
 
   useEffect(() => {
     AsyncStorage.getItem("user").then((user) => {
@@ -35,7 +35,7 @@ export default function Login({ navigation }) {
     const { _id } = response.data;
 
     await AsyncStorage.setItem("user", _id);
-    await AsyncStorage.setItem("techs", tech);
+    await AsyncStorage.setItem("techs", techs);
 
     navigation.navigate("List");
   }
@@ -68,8 +68,8 @@ export default function Login({ navigation }) {
           placeholderTextColor="#999"
           autoCapitalize="words"
           autoCorrect={false}
-          value={tech}
-          onChangeText={setTech}
+          value={techs}
+          onChangeText={setTechs}
         />
 
         <TouchableOpacity onPress={handleSubmit} style={styles.button}>
