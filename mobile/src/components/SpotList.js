@@ -51,7 +51,6 @@ function SpotList({ tech, navigation }) {
             <Text style={styles.price}>
               {item.price ? `R$${item.price}/dia` : "GRATUITO"}
             </Text>
-
             <TouchableOpacity
               onPress={() => handleNavigate(item._id)}
               style={styles.button}

@@ -5,7 +5,10 @@ import {
   Image,
   AsyncStorage,
   StyleSheet,
+  Alert,
 } from "react-native";
+
+import socketio from "socket.io-client";
 
 import SpotList from "../components/SpotList";
 
@@ -15,20 +18,36 @@ export default function List() {
   const [techs, setTechs] = useState([]);
 
   useEffect(() => {
-    AsyncStorage.getItem("techs").then((storageTechs) => {
-      const techsArray = storageTechs.split(",").map((tech) => tech.trim());
+    AsyncStorage.getItem("user").then((user_id) => {
+      const socket = socketio("http://192.168.0.22:3333", {
+        query: { user_id },
+      });
+
+      socket.on("booking_response", (booking) => {
+        Alert.alert(
+          `Sua reserva em ${booking.spot.company} em ${booking.date} foi ${
+            booking.approved ? "APROVADA" : "REJEITADA"
+          }`
+        );
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.getItem("techs").then((storagedTechs) => {
+      const techsArray = storagedTechs.split(",").map((tech) => tech.trim());
 
       setTechs(techsArray);
-      console.log(techsArray);
     });
   }, []);
 
   return (
-    <SafeAreaView style={styles.containter}>
+    <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo} />
+
       <ScrollView>
         {techs.map((tech) => (
-          <SpotList tech={tech} key={tech} />
+          <SpotList key={tech} tech={tech} />
         ))}
       </ScrollView>
     </SafeAreaView>
