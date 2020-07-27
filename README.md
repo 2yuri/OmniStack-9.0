@@ -30,4 +30,4 @@ O Aircnc é um projeto que visa conectar empresas que querem abrir spots e desen
 <br />
 
 
-- Projeto desenvolvido na semana omnistack pela Rocketseat :rocket: ❤️
+<p align="center"> Projeto desenvolvido na semana omnistack pela Rocketseat :rocket: ❤️ </p>
